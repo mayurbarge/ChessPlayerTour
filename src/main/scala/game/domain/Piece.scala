@@ -7,7 +7,7 @@ trait Piece { self =>
   def movingDirection: Option[Direction]
   def possibleDirections(): List[Direction]
 
-  def allMoves():List[Position] = {
+  def allMoves(position: Position):List[Position] = {
     possibleDirections().map(direction => direction.transform(position))
   }
 }

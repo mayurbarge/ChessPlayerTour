@@ -7,12 +7,13 @@ object ChessBoard extends BoardConfiguration {
   def isValidPosition(position: Position) =
       cells.map(_.position).exists(validPosition => validPosition.row == position.row && validPosition.col == position.col)
 
-  def possibleMoves(piece: Piece) = piece.allMoves()
+  def possibleMoves(piece: Piece) = piece.allMoves(piece.position)
 
   def findCellByLabel(label: String) = cells.find(_.label == label)
 }
 
-trait BoardConfiguration {
+case class BoardConfiguration() {
+  val MAX = 8
   val cells = {
     val rowLabels = List("A","B","C","D","E","F","G","H")
     val rows = List("1","2","3","4","5","6","7","8")
