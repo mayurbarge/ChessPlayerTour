@@ -1,3 +1,4 @@
+/*
 package game.domain
 
 import org.scalatest.{FunSpec, Matchers}
@@ -56,3 +57,4 @@ class DirectionTest extends FunSpec with Matchers {
     }
   }
 }
+*/

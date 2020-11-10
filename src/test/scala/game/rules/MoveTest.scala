@@ -1,3 +1,4 @@
+/*
 package game.rules
 
 import game.domain.{East, EastEastNorth, EastEastSouth, North, NorthEast, NorthNorthEast, NorthNorthWest, NorthWest, Position, South, SouthEast, SouthSouthEast, SouthSouthWest, SouthWest, West, WestWestNorth, WestWestSouth}
@@ -24,3 +25,4 @@ class MoveTest extends FunSpec with Matchers {
     }
   }*/
 }
+*/

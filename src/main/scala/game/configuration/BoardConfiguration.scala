@@ -1,3 +1,4 @@
+/*
 package game.configuration
 
 import game.domain.{Cell, Direction, King, Piece, Position}
@@ -28,4 +29,4 @@ case class BoardConfiguration() {
   }
 
   def getCells(positions: List[Position]) = positions.flatMap(position => cells.find(position == _.position))
-}
+}*/

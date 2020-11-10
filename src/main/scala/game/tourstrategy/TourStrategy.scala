@@ -1,11 +1,12 @@
+/*
 package game.tourstrategy
 
 import game.configuration.{BoardConfiguration, ChessBoard}
-import game.domain.{King, Position}
+import game.domain.{Horse, King, Position}
 
 object TourStrategy extends App {
 
-  val knight  = King(Position(1,1), None)
+  val knight  = Horse(Position(0,0), None)
 
   var solution = Array.ofDim[Int](8,8)
 
@@ -25,14 +26,10 @@ object TourStrategy extends App {
    println("Solution does not exist")
   }
   else {
-    for(i <- 0 until 8) {
-      for(j <- 0 until 8) {
-        print(solution(i)(j) + " ")
-      }
-      println()
-    }
+    printSolution
   }
 
+  var generation = 0
 
 
   /* A recursive utility function to solve Knight Tour
@@ -40,7 +37,7 @@ object TourStrategy extends App {
   def solveKTUtil(x: Int, y: Int, movei: Int, solution: Array[Array[Int]]):Int =
   {
 
-    if (movei == 64)
+    if (movei == 25 )
       return 1;
 
     /* Try all next moves from
@@ -53,7 +50,6 @@ object TourStrategy extends App {
         else {
           solution(position.row)(position.col) = -1
         }
-
       }
     }
     )
@@ -66,7 +62,17 @@ object TourStrategy extends App {
     (position.row >= 0 && position.row < 8 && position.col >= 0 && position.col < 8
       && solution(position.row)(position.col) == -1);
   }
+
+  def printSolution = {
+    for(i <- 0 until 8) {
+      for(j <- 0 until 8) {
+        print(solution(i)(j) + " ")
+      }
+      println()
+    }
+  }
 }
 
 
 
+*/

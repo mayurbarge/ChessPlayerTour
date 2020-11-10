@@ -1,3 +1,4 @@
+/*
 package game.runner
 
 import cats.effect._
@@ -50,4 +51,4 @@ object ChessRunner extends IOApp {
       case None => IO(println("Invalid cell position provided"))
     }
   }
-}
+}*/

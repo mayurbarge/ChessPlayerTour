@@ -1,31 +1,28 @@
 package game.domain
 
-import game.rules.{Diagonal, Horizontal, MultiStep, SingleStep, Step, TwoAndHalf, Vertical}
+import game.rules.{SingleStep, Step}
 
 trait Piece { self =>
   def position: Position
-  def movingDirection: Option[Direction]
-  def possibleDirections(): List[Direction]
-
-  def allMoves(position: Position):List[Position] = {
-    possibleDirections().map(direction => direction.transform(position))
-  }
+  def possibleMoves(): Seq[Position => Position]
 }
 
-case class King(override val position: Position, override val movingDirection: Option[Direction]) extends Piece {
-  def possibleDirections() = Horizontal.movementToDirections ++ Vertical.movementToDirections ++ Diagonal.movementToDirections
-}
-
-case class Horse(override val position: Position, override val movingDirection: Option[Direction]) extends Piece {
+case class Horse(override val position: Position) extends Piece {
   def step: Step = SingleStep
-  def possibleDirections() = TwoAndHalf.movementToDirections
+  def possibleMoves() = Moves.horizontalMoves ++ Moves.verticalMoves ++ Moves.diagonalMoves
 }
 
 object Piece {
   def apply(name: String, position: Position): Option[Piece] = name match {
-    case "King" => Some(King(position, None))
-    case "Horse" => Some(Horse(position, None))
-
+    case "Horse" => Some(Horse(position))
     case _=> None
   }
 }
+
+/*
+object Test extends App {
+  val x: Option[Piece] = Piece("Horse", Position(0,0))
+  println(x.get.possibleMoves().map(f=>f(Position(2,3))))
+  List(Position(5,3), Position(-1,3), Position(2,6), Position(2,0), Position(4,5), Position(0,5), Position(4,1), Position(0,1))
+
+}*/
