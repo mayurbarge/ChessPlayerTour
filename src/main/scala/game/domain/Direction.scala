@@ -1,10 +1,5 @@
 package game.domain
 
-import scalaz.Monoid
-import scalaz.syntax.SemigroupOps
-import scalaz._
-import Scalaz._
-
 trait Direction {
   val transformBy:(Int => Position => Position)
 }
@@ -37,6 +32,5 @@ object Moves {
   val horizontalMoves = List(East.transformBy(3), West.transformBy(3))
   val verticalMoves = List(North.transformBy(3), South.transformBy(3))
   val diagonalMoves = List(NorthEast.transformBy(2), NorthWest.transformBy(2), SouthEast.transformBy(2),SouthWest.transformBy(2))
-  
 }
 

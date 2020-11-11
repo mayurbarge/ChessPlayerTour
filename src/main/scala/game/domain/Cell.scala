@@ -1,3 +1,3 @@
 package game.domain
 
-case class Cell(label:String, position: Position)
+case class Cell(steps:Int, position: Position)
