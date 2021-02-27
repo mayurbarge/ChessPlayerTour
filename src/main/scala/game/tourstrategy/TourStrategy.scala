@@ -10,25 +10,42 @@ object TourStrategy {
   val backtrackingStrategy = new TourStrategy[Option[Array[Array[Int]]]] {
     override def run(piece: Piece, start: Position) = {
       val MAX = 8
+
       var solution = Array.fill(MAX)(Array.fill(MAX)(-1))
+      var cache = Array.fill(MAX+1)(Array.fill(MAX+1)(false))
 
       solution(start.row)(start.col) = 0
 
       def solveAndBacktrack(x: Int, y: Int, currentStepCount: Int, solution: Array[Array[Int]]): Int = {
-        if (currentStepCount == MAX * MAX)
-          return 1;
+        println(x + " " + y + " " + currentStepCount)
+        if (currentStepCount == MAX * MAX) {
+          cache(MAX)(MAX) = true
+          return 1
+        }
 
-        piece.possibleMoves().map(f => f(Position(x, y))).foreach(position => {
+        def go(position: Position): Int = {
           if (isSafe(position, solution)) {
             solution(position.row)(position.col) = currentStepCount
-            if (solveAndBacktrack(position.row, position.col, currentStepCount + 1, solution) == 1)
-              return 1
-            else {
+
+            if (cache(position.row)(position.col) == true)
+              1
+            else if (solveAndBacktrack(position.row, position.col, currentStepCount + 1, solution) == 1) {
+              cache(position.row)(position.col) = true
+              1
+            } else {
               solution(position.row)(position.col) = -1
+              0
             }
           }
+          else 0
+        }
+
+
+
+        piece.possibleMoves().map(f => f(Position(x, y))).takeWhile(position => {
+          go(position) == 1
         })
-        return 0
+
       }
 
       def isSafe(position: Position, solution: Array[Array[Int]]) = {
